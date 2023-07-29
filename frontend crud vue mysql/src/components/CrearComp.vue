@@ -66,14 +66,21 @@ const submitForm = async () => {
     <table class="table text-yellow-200">
       <thead>
       <tr>
+        <th class="text-black">Id</th>
         <th class="text-yellow-200">Name</th>
         <th class="text-yellow-200">Email</th>
+        <th class="text-yellow-200">Acciones</th>
       </tr>
     </thead>
     <tbody>
       <tr v-for="usuario in respuesta" :key="usuario.id">
-        <td class="text-yellow-200 ">{{ usuario.nombre }}</td>
+        <td class="text-yellow-200 ">{{ usuario.id }}</td>
+        <td class="text-yellow-200  ">{{ usuario.nombre }}</td>
         <td class="text-yellow-200 ">{{ usuario.email }}</td>
+        <td>
+          <router-link class="bg-yellow-500 text-black p-2  rounded-md mx-2  hover:bg-blue-400 " to="/editar">Editar</router-link> 
+          <router-link class="bg-red-400 text-black p-2  rounded-md mx-2 hover:bg-cyan-400" to="/eliminar">Eliminar</router-link>
+        </td>
       </tr>
     </tbody>
     </table>
@@ -163,21 +170,23 @@ h1{
   font-family: Arial, sans-serif;
   border-radius: 3px; /* Agregamos un borde redondeado */
   overflow: hidden;
-  color: #FEBF00;
+  
 
 }
-
-/* Estilos para las celdas del encabezado (th) */
 .table th {
-  background-color: #FEBF00;
+  background-color: #0000;
   padding: 12px;
   text-align: left;
   font-weight: bold;
-  color: #313030;
   border: 1px solid #FEBF00;
   
   
 }
+.table th:nth-child(1) {
+  background-color: #FEBF00 ;
+
+}
+
 
 /* Estilos para las celdas de datos (td) */
 .table td {
@@ -189,16 +198,11 @@ h1{
 }
 
 .table tbody tr:hover {
-  background-color: #FEBF00;
-  color: white;
+  background-color: #f1b604;
+  color: rgb(20, 20, 20);
   border: 1px solid #000;
 }
-.table th:nth-child(even) {
-  background-color: #0000;
-  color: #FEBF00;
-  
 
-}
 @media (max-width: 768px) {
   .table {
     font-size: 14px;
