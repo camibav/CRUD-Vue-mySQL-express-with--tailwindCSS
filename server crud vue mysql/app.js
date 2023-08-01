@@ -1,26 +1,25 @@
-const express = require('express');
-const mysql = require('mysql2');
-const bodyParser = require('body-parser');
-const cors = require('cors'); // Importa el paquete 'cors'
+const express = require("express");
+const mysql = require("mysql2");
+const bodyParser = require("body-parser");
+const cors = require("cors"); // Importa el paquete 'cors'
 
-
- // Create connection
+// Create connection
 const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '1161202CAmi',
-    database: 'mi_base_de_datos',
-    port: '3306',
-  });
+  host: "localhost",
+  user: "root",
+  password: "1161202CAmi",
+  database: "mi_base_de_datos",
+  port: "3306",
+});
 
-  // Conectar a la base de datos MySQL
+// Conectar a la base de datos MySQL
 connection.connect((err) => {
-    if (err) throw err;
-    console.log('Conexión exitosa a la base de datos MySQL.');
-  });
+  if (err) throw err;
+  console.log("Conexión exitosa a la base de datos MySQL.");
+});
 
 // Crear una aplicación Express.js
-const app = express();  
+const app = express();
 // Habilitar CORS para todas las rutas
 app.use(cors());
 
@@ -29,36 +28,56 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Ruta para obtener todos los usuarios de la base de datos
-app.get('/usuarios', (req, res) => {
-    const sql = 'SELECT * FROM usuarios';
-    connection.query(sql, (err, result) => {
-      if (err) throw err;
-      res.json(result);
-    });
-  });
-
-// Ruta para crear un nuevo usuario
-app.post('/usuarios', (req, res) => {
-    const { nombre, email } = req.body;
-    const sql = 'INSERT INTO usuarios (nombre, email) VALUES (?, ?)';
-    connection.query(sql, [nombre, email], (err, result) => {
-      if (err) throw err;
-      res.send('Usuario creado exitosamente.');
-    });
-  });
-// borrar usuarios
-app.delete('/usuarios/:id', (req, res) => {
-  const { id } = req.params; // Obtener el ID del usuario de la URL
-  const sql = `DELETE FROM usuarios WHERE id = ${id}`;  // Formar la consulta SQL
+app.get("/usuarios", (req, res) => {
+  const sql = "SELECT * FROM usuarios";
   connection.query(sql, (err, result) => {
     if (err) throw err;
-    res.send('Usuario eliminado exitosamente.');
+    res.json(result);
+  });
+});
+
+//Ruta para obtener un usuario por su ID
+app.get("/usuarios/:id", (req, res) => {
+  const { id } = req.params;
+  const sql = `SELECT * FROM usuarios WHERE id = ${id}`;
+  connection.query(sql, (err, result) => {
+    if (err) throw err;
+    res.json(result);
+  });
+});
+
+// Ruta para crear un nuevo usuario
+app.post("/usuarios", (req, res) => {
+  const { nombre, email } = req.body;
+  const sql = "INSERT INTO usuarios (nombre, email) VALUES (?, ?)";
+  connection.query(sql, [nombre, email], (err, result) => {
+    if (err) throw err;
+    res.send("Usuario creado exitosamente.");
+  });
+});
+
+// Ruta para actualizar un usuario
+app.put("/usuarios/:id", (req, res) => {
+  const { id } = req.params; //obtener el id del usuario
+  const { nombre, email } = req.body; //obtener los datos del usuario
+  const sql = `UPDATE usuarios SET nombre = '${nombre}', email = '${email}' WHERE id = ${id}`;
+  connection.query(sql, [nombre, email], (err, result) => {
+    if (err) throw err;
+    res.send("Usuario actualizado exitosamente.");
+  });
+}); //put se usa para actualizar información
+
+// borrar usuarios
+app.delete("/usuarios/:id", (req, res) => {
+  const { id } = req.params; // Obtener el ID del usuario de la URL
+  const sql = `DELETE FROM usuarios WHERE id = ${id}`; // Formar la consulta SQL
+  connection.query(sql, (err, result) => {
+    if (err) throw err;
+    res.send("Usuario eliminado exitosamente.");
   }); // Ejecutar la consulta SQL
+});
 
-})
-
-
-  // Iniciar el servidor en el puerto 3000
+// Iniciar el servidor en el puerto 3000
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Servidor Express.js en funcionamiento en el puerto ${PORT}`);
