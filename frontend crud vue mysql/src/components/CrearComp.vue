@@ -63,13 +63,7 @@ const submitForm = async () => {
 <style scoped>
 
 
-.flex{
-  display: flex;
-  justify-content:space-around;
-  align-items: start;
-  flex-wrap: wrap;
-  margin-top:10px ;
-}
+
 h1{
   
   font-size: 30px;
@@ -132,55 +126,6 @@ h1{
   margin-top: 10px;
   font-size:1rem ;
   
-}
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 20px 0;
-  font-family: Arial, sans-serif;
-  border-radius: 3px; /* Agregamos un borde redondeado */
-  overflow: hidden;
-  
-
-}
-.table th {
-  background-color: #0000;
-  padding: 12px;
-  text-align: left;
-  font-weight: bold;
-  border: 1px solid #FEBF00;
-  
-  
-}
-.table th:nth-child(1) {
-  background-color: #FEBF00 ;
-
-}
-
-
-/* Estilos para las celdas de datos (td) */
-.table td {
-  padding: 12px;
-  border: 1px solid #FEBF00;
-  
-  
- 
-}
-
-.table tbody tr:hover {
-  background-color: #f1b604;
-  color: rgb(20, 20, 20);
-  border: 1px solid #000;
-}
-
-@media (max-width: 768px) {
-  .table {
-    font-size: 14px;
-  }
-  .table th,
-  .table td {
-    padding: 8px;
-  }
 }
 
 

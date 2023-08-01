@@ -20,6 +20,12 @@ const routes = [
     component: EditarCompo
   },
   {
+    path: '/editar/:id',
+    name: 'editarUsuario',
+    component: EditarCompo,
+    
+  },
+  {
     path: '/listar',
     name: 'listar',
     component: ListarCompo
