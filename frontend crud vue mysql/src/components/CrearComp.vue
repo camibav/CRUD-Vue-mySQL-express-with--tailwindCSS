@@ -1,32 +1,17 @@
 <script setup>
 import axios from 'axios';
+import { ref } from 'vue';
 
-import { ref, onMounted } from 'vue';
 
 const nombre = ref('');
 const email = ref('');
 const mensaje = ref('');
 const mensajeClass = ref('');
-const respuesta = ref([]);
-onMounted(() => {
-  respuestaApi();
-});
 
-const respuestaApi=async()=>{
-  try{
-    const response=await axios.get('/usuarios');
-    respuesta.value=response.data;
-    console.log(response.data);
-  
-    
-  }catch(error){
-    console.error(error);
-  }
-}
-respuestaApi(respuesta.value);
 
-const submitForm = async () => {
-  
+
+
+const crearUsuariaForm= async ()=>{
   try {
     const response = await axios.post('/usuarios', { nombre: nombre.value, email: email.value });
     if (response.status === 200) {
@@ -34,56 +19,41 @@ const submitForm = async () => {
       mensajeClass.value = 'success';
       nombre.value = '';
       email.value = '';
-      respuestaApi();
+      
     }
   } catch (error) {
     mensaje.value = 'Error en el registro';
     mensajeClass.value = 'error';
     console.error(error);
   }
+}
+
+const submitForm = async () => {
+  crearUsuariaForm();
+  
 };
 </script>
 
 
 <template>
-  <div class="flex">
-  <div>
-    <h1 class="text-yellow-200 ">Formulario de Registro</h1>
+<div class="flex justify-center items-center min-h-screen bg-black  ">
+  <div class="w-full max-w-md p-6 rounded-lg bg-gray-800 shadow-lg mt-[4%]">
+    <h1 class="text-yellow-200 text-2xl font-semibold mb-6">Formulario de Registro</h1>
     <form @submit.prevent="submitForm" class="form">
-      <label class="text-yellow-200" for="nombre">Nombre:</label>
-      <input class="input" type="text" v-model="nombre" required />
+      <div class="mb-4">
+        <label class="text-yellow-200 block" for="nombre">Nombre:</label>
+        <input class="input bg-gray-700 w-full px-3 py-2 rounded focus:outline-none focus:ring focus:border-yellow-500" type="text" v-model="nombre" required />
+      </div>
 
-      <label class="text-yellow-200"  for="email">Email:</label>
-      <input class="input" type="email" v-model="email" required />
+      <div class="mb-4">
+        <label class="text-yellow-200 block" for="email">Email:</label>
+        <input class="input bg-gray-700  w-full px-3 py-2 rounded focus:outline-none focus:ring focus:border-yellow-500" type="email" v-model="email" required />
+      </div>
 
-      <button class="button text-yellow-600" type="submit">Enviar</button>
+      <button class="button bg-yellow-500 text-yellow-900 w-[40%] py-2 rounded mt-4 hover:bg-yellow-600 focus:outline-none focus:ring focus:border-yellow-500" type="submit">Agregar usuario</button>
     </form>
 
-    <div v-if="mensaje" :class="mensajeClass">{{ mensaje }}</div>
-  </div>
-  <div>
-    <h1 class="text-yellow-200 ">Lista de Usuarios</h1>
-    <table class="table text-yellow-200">
-      <thead>
-      <tr>
-        <th class="text-black">Id</th>
-        <th class="text-yellow-200">Name</th>
-        <th class="text-yellow-200">Email</th>
-        <th class="text-yellow-200">Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="usuario in respuesta" :key="usuario.id">
-        <td class="text-yellow-200 ">{{ usuario.id }}</td>
-        <td class="text-yellow-200  ">{{ usuario.nombre }}</td>
-        <td class="text-yellow-200 ">{{ usuario.email }}</td>
-        <td>
-          <router-link class="bg-yellow-500 text-black p-2  rounded-md mx-2  hover:bg-blue-400 " to="/editar">Editar</router-link> 
-          <router-link class="bg-red-400 text-black p-2  rounded-md mx-2 hover:bg-cyan-400" to="/eliminar">Eliminar</router-link>
-        </td>
-      </tr>
-    </tbody>
-    </table>
+    <div v-if="mensaje" :class="mensajeClass" class="text-yellow-200 mt-4">{{ mensaje }}</div>
   </div>
 </div>
 </template>

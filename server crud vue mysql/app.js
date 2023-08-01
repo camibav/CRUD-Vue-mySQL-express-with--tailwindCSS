@@ -46,6 +46,16 @@ app.post('/usuarios', (req, res) => {
       res.send('Usuario creado exitosamente.');
     });
   });
+// borrar usuarios
+app.delete('/usuarios/:id', (req, res) => {
+  const { id } = req.params; // Obtener el ID del usuario de la URL
+  const sql = `DELETE FROM usuarios WHERE id = ${id}`;  // Formar la consulta SQL
+  connection.query(sql, (err, result) => {
+    if (err) throw err;
+    res.send('Usuario eliminado exitosamente.');
+  }); // Ejecutar la consulta SQL
+
+})
 
 
   // Iniciar el servidor en el puerto 3000
