@@ -2,6 +2,7 @@
 import {ref } from 'vue';
 import axios from 'axios';
 import { useRoute } from 'vue-router';
+import router from '../router';
 
 const route = useRoute();
 
@@ -49,6 +50,7 @@ const actualizarUsuario= async(id)=>{
 
 const submitForm=()=>{
 actualizarUsuario(id);
+router.push('/listar');
  
 }
 
@@ -56,7 +58,7 @@ actualizarUsuario(id);
 </script>
 
 <template>
-  <div class="flex justify-center items-center min-h-screen bg-black  ">
+  <div class="flex justify-center items-start min-h-screen bg-black  ">
   <div class="w-full max-w-md p-6 rounded-lg bg-gray-800 shadow-lg mt-[4%] ">
     <h1 class="text-yellow-200 text-lg  font-semibold mb-6">Actualizar registro del usuario</h1>
     <form @submit.prevent="submitForm" class="form">

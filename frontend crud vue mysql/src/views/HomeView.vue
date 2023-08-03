@@ -1,23 +1,24 @@
-<script setup>
-import {RouterLink } from 'vue-router'
-</script>
-
 <template>
-   <header class="header bg-yellow-200">
-    <div class="wrapper">
-      <nav class="nav">
-        <RouterLink to="/" class="nav-link">Home</RouterLink>
-        <RouterLink to="/crear" class="nav-link">Crear</RouterLink>
-        <RouterLink to="/listar" class="nav-link">Listar</RouterLink>
-        
-      </nav>
-    </div>
-  </header>
-  <main>
-    <slot></slot>
-  </main>
-  
+  <div>
+    <header class="header bg-yellow-200">
+      <div class="wrapper">
+        <nav class="nav">
+          <RouterLink to="/" class="nav-link">Home</RouterLink>
+          <RouterLink to="/crear" class="nav-link">Crear</RouterLink>
+          <RouterLink to="/listar" class="nav-link">Listar</RouterLink>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <!-- <h1 class="text-yellow-200 text-3xl font-bold text-center mt-[10%]">Bienvenido a la página de inicio</h1>
+      <p class="mt-4 text-yellow-200 text-center mt-[10]">Aquí puedes agregar el texto que desees para tu página de inicio.</p> -->
+    </main>
+  </div>
 </template>
+
+<script setup>
+import { RouterLink } from "vue-router";
+</script>
 
 
 <style scoped>

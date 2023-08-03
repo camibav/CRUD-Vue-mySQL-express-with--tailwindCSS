@@ -1,6 +1,7 @@
 <script setup>
 import axios from 'axios';
 import { ref } from 'vue';
+import router from '../router';
 
 
 const nombre = ref('');
@@ -30,13 +31,14 @@ const crearUsuariaForm= async ()=>{
 
 const submitForm = async () => {
   crearUsuariaForm();
+  router.push('/listar');
   
 };
 </script>
 
 
 <template>
-<div class="flex justify-center items-center min-h-screen bg-black  ">
+<div class="flex justify-center items-start min-h-screen bg-black  ">
   <div class="w-full max-w-md p-6 rounded-lg bg-gray-800 shadow-lg mt-[4%]">
     <h1 class="text-yellow-200 text-2xl font-semibold mb-6">Formulario de Registro</h1>
     <form @submit.prevent="submitForm" class="form">
