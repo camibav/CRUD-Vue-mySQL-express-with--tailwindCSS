@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-cover">
     <header class="header bg-yellow-200">
       <div class="wrapper">
         <nav class="nav">
@@ -22,6 +22,7 @@ import { RouterLink } from "vue-router";
 
 
 <style scoped>
+
 .header {
   
   padding: 20px 0; /* Espacio interno (arriba y abajo) para el contenido */

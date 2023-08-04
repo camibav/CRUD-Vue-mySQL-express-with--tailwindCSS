@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-cover bg-center h-screen flex items-center justify-center">
+    <div class=" bg-center h-screen flex items-center justify-center">
       <div class="bg-yellow-300 p-8 rounded-lg shadow-lg text-center">
         <h1 class="text-4xl font-bold text-black mb-6">{{ title }}</h1>
         <p class="text-black text-lg mb-6">{{ message }}</p>
@@ -14,12 +14,10 @@
   import { ref } from 'vue';
   
   const title = ref('¡Bienvenido a mi página!');
-  const message = ref('Estoy practicando el CRUD utilizando Vue 3 JS Composition API, script setup, Tailwind CSS, Express y MySQL.');
+  const message = ref('Estoy practicando el CRUD utilizando Vue 3 JS Composition API,Tailwind CSS, Express js y MySQL.');
   </script>
   
   <style>
-  .bg-cover {
-    background-image: url('');
-  }
+  
   </style>
   
