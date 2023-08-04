@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import HomeCompo from '../components/HomeComp.vue'
 import CrearCompo from '../components/CrearComp.vue'
 import EditarCompo from '../components/EditarComp.vue'
 import ListarCompo from '../components/ListarComp.vue'
@@ -7,6 +8,7 @@ const routes = [
   {
     path: '/',
     name: 'home',
+    component: HomeCompo
     
   },
   {
